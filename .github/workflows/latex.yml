@@ -1,29 +1,27 @@
-name: Build LaTeX document
+name: Build LaTeX document and upload to Release
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    tags:
+      - 'v*' # Triggers the workflow when a tag starting with 'v' is pushed (e.g., v1.0.0)
 
 jobs:
   build_latex:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required for writing to releases
     steps:
-      - name: Set up Git repository
+      - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Compile LaTeX document
-        # Use the xu-cheng/latex-action from the GitHub Marketplace
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v2
         with:
-          root_file: main.tex # Replace 'main.tex' with your primary .tex file name
+          root_file: main.tex # Replace 'main.tex' with your root LaTeX file name
 
-      - name: Upload PDF artifact
-        # Use the actions/upload-artifact to save the resulting PDF
-        uses: actions/upload-artifact@v4
+      - name: Upload PDF to Release
+        uses: softprops/action-gh-release@v1
         with:
-          name: Compiled-PDF # Name of the artifact
-          path: main.pdf    # Path to the generated PDF file (matches root_file name)
+          files: main.pdf # Replace 'main.pdf' with the name of the generated PDF file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
