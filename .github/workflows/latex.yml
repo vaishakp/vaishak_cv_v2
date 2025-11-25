@@ -1,0 +1,29 @@
+name: Build LaTeX document
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        # Use the xu-cheng/latex-action from the GitHub Marketplace
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex # Replace 'main.tex' with your primary .tex file name
+
+      - name: Upload PDF artifact
+        # Use the actions/upload-artifact to save the resulting PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: Compiled-PDF # Name of the artifact
+          path: vaishak_cv.pdf    # Path to the generated PDF file (matches root_file name)
