@@ -26,4 +26,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Compiled-PDF # Name of the artifact
-          path: vaishak_cv.pdf    # Path to the generated PDF file (matches root_file name)
+          path: main.pdf    # Path to the generated PDF file (matches root_file name)
