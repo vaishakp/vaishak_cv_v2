@@ -1,27 +1,43 @@
-name: Build LaTeX document and upload to Release
+name: Build & Publish CV PDF
 
 on:
   push:
-    tags:
-      - 'v*' # Triggers the workflow when a tag starting with 'v' is pushed (e.g., v1.0.0)
+    branches: [ main ]   # change if Overleaf syncs to a different branch
+    paths:
+      - "main.tex"
+      - "**/*.tex"
+      - "**/*.bib"
+      - "**/*.cls"
+      - "**/*.sty"
+      - "**/*.bst"
+      - "**/*.png"
+      - "**/*.jpg"
+      - "**/*.pdf"
+      - ".github/workflows/cv-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  build_latex:
+  build-and-release:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # Required for writing to releases
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: main.tex # Replace 'main.tex' with your root LaTeX file name
+      - name: Install TeX tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
 
-      - name: Upload PDF to Release
-        uses: softprops/action-gh-release@v1
+      - name: Build main.tex -> cv.pdf
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          mv main.pdf cv.pdf
+
+      - name: Publish cv.pdf to release tag cv-latest
+        uses: softprops/action-gh-release@v2
         with:
-          files: main.pdf # Replace 'main.pdf' with the name of the generated PDF file
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: cv-latest
+          name: "CV (latest)"
+          files: cv.pdf
