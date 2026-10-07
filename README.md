@@ -17,8 +17,24 @@ versions are self-contained, because a shortened CV needs *selected and reworded
 content rather than a subset of the full one. When something important is added to
 the long CV, decide whether it earns a place in the short ones.
 
-CI checks the page counts and fails if `cv-1page.tex` spills past one page or
+`./build.sh` builds all three and fails if `cv-1page.tex` spills past one page or
 `cv-3page.tex` past three.
+
+## Why there is no GitHub Actions workflow
+
+Overleaf's GitHub integration does not request the `workflow` OAuth scope, and
+GitHub refuses any push that creates or modifies files under
+`.github/workflows/`. A repository containing one therefore cannot be synced
+from Overleaf: the sync fails wholesale with *"We are unable to sync the
+following files ... From GitHub: Not Found"*, listing every file in the project.
+
+This repo used to carry `.github/workflows/latex.yml`, which is what broke
+Overleaf sync in November 2025 and silently stranded six months of edits in the
+Overleaf project. The workflow has been removed and replaced by `build.sh`.
+
+**Do not add anything under `.github/` to this repository.** If you want CI
+back, it has to live somewhere Overleaf does not sync — a separate repository
+that checks this one out, for instance.
 
 ## Layout
 
@@ -60,8 +76,7 @@ pictures/
 ## Building
 
 ```sh
-latexmk -pdf main.tex && latexmk -pdf cv-3page.tex && latexmk -pdf cv-1page.tex
+./build.sh
 ```
 
-The GitHub Action in `.github/workflows/` builds all three PDFs on push, so build
-artifacts (including `main.pdf`) are gitignored.
+Build artifacts are gitignored; generated PDFs are not tracked.
