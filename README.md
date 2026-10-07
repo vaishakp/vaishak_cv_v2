@@ -3,11 +3,31 @@
 LaTeX source for the CV, built with the bundled `moderncv` class. The repository is
 synced with Overleaf, so the layout below is designed to be edited from either side.
 
+## Three versions
+
+| File | Length | Use |
+|---|---|---|
+| `main.tex` | ~9 pp | The full record. Everything. |
+| `cv-3page.tex` | 3 pp | Job and grant applications that cap CV length. |
+| `cv-1page.tex` | 1 pp | Cover-letter attachments, speaker bios, hard one-page limits. |
+
+All three share `personal.tex` (name, address, phone, email, homepage), so contact
+details are edited once. `main.tex` is assembled from `sections/`; the two short
+versions are self-contained, because a shortened CV needs *selected and reworded*
+content rather than a subset of the full one. When something important is added to
+the long CV, decide whether it earns a place in the short ones.
+
+CI checks the page counts and fails if `cv-1page.tex` spills past one page or
+`cv-3page.tex` past three.
+
 ## Layout
 
 ```
-main.tex              root document: preamble, contact details, \input list
-sections/             one file per CV section — edit these
+main.tex              long version: preamble, \input list
+cv-3page.tex          3-page version, self-contained
+cv-1page.tex          1-page version, self-contained
+personal.tex          contact details, shared by all three
+sections/             one file per CV section, used by main.tex — edit these
   positions.tex       positions held
   education.tex       Ph.D thesis and education
   publications.tex    in preparation + published/archived
@@ -40,8 +60,8 @@ pictures/
 ## Building
 
 ```sh
-pdflatex main.tex && pdflatex main.tex   # twice, for the page refs
+latexmk -pdf main.tex && latexmk -pdf cv-3page.tex && latexmk -pdf cv-1page.tex
 ```
 
-The GitHub Action in `.github/workflows/` builds the PDF on push, so build
+The GitHub Action in `.github/workflows/` builds all three PDFs on push, so build
 artifacts (including `main.pdf`) are gitignored.

@@ -1,0 +1,66 @@
+%----------------------------------------------------------------------------------------
+%	SHORT CV -- 1 page
+%
+%	A summary version for cover-letter attachments, speaker bios and
+%	applications with a hard one-page limit. Self-contained apart from
+%	personal.tex.
+%
+%	This page is full. Adding a line means removing one.
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,a4paper,sans,colorlinks,unicode]{moderncv}
+
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+\usepackage[scale=0.94,top=1.2cm,bottom=1.2cm]{geometry}
+\setlength{\hintscolumnwidth}{2.2cm}
+
+\input{personal}
+% A compact one-line address for the single-page version.
+\address{307 Whitmore Laboratory, Pennsylvania State University, State College, PA 16802, USA}{}{}
+\title{Gravitational Wave Astronomy \& Numerical Relativity}
+\extrainfo{ORCID \httplink[0000-0001-6712-2457]{https://orcid.org/0000-0001-6712-2457} \quad GitHub \httplink[vaishakp]{https://github.com/vaishakp}}
+
+\begin{document}
+
+\makecvtitle
+
+\vspace{-1.5em}
+
+%----------------------------------------------------------------------------------------
+
+\section{Positions and Education}
+
+\cvitem{2025 -}{\textbf{Eberly Post-doctoral Scholar}, Physics at the eXtreme group, Institute for Gravitation and the Cosmos, Pennsylvania State University. With Prof. B. S. Sathyaprakash.}
+\cvitem{2023 - 2024}{\textbf{Post-doctoral Fellow}, International Centre for Theoretical Sciences - TIFR, Bengaluru. With Dr. Prayush Kumar.}
+\cvitem{2023}{\textbf{Ph.D. in Physics}, IUCAA Pune / Jawaharlal Nehru University. \emph{Strong gravity physics of dynamical horizons in black hole mergers and its imprint in their gravitational radiation}. Supervisor: Prof. Sukanta Bose.}
+\cvitem{2016}{\textbf{Integrated M.Sc. (Hons.) in Physics}, BITS Pilani - Hyderabad Campus.}
+
+\section{Research}
+
+\cvitem{Physics}{Dynamical horizons and strong-field black hole dynamics; numerical relativity; tests of general relativity; black hole spectroscopy and ringdown; third-generation and space-based detector science.}
+\cvitem{Methods}{Gravitational wave data analysis and Bayesian inference; searches and template banks; waveform modelling; HPC, GPU computing and machine learning.}
+
+\section{Selected Publications}
+
+\cvitem{}{\small 17 published or archived, 6 of them single-author; 9 in preparation. Full list: \httplink[vaishakprasad.com]{https://www.vaishakprasad.com}}
+\cvitem{2026}{\textbf{V. Prasad}, \emph{Accelerated time-domain analysis for gravitational wave astronomy}, \httplink[arXiv:2603.06010]{https://arxiv.org/abs/2603.06010}. Single author. Exact time-domain inference at near-FFT cost.}
+\cvitem{2026}{\textbf{V. Prasad}, \emph{Multi-segment consistency tests of general relativity}, \httplink[arXiv:2603.05835]{https://arxiv.org/abs/2603.05835}. Single author. Demonstrated on GW250114.}
+\cvitem{2026}{\normalfont{M. Rinc\'{o}n-Ram\'{i}rez}, N. K. Johnson-McDaniel, E. Bianchi, I. Gupta, \textbf{V. Prasad}, B. S. Sathyaprakash, \emph{Maximum entropy conjecture for black hole mergers}, \httplink[Phys. Rev. Lett. 137, 021406]{https://doi.org/10.1103/hvp6-ydbq}.}
+\cvitem{2026}{LVK Collaboration, \emph{Black hole spectroscopy and tests of general relativity with GW250114}, \httplink[Phys. Rev. Lett. 136, 041403]{https://doi.org/10.1103/6c61-fm1n}. Editors' Suggestion.}
+\cvitem{2025}{LVK Collaboration, \emph{GW250114: testing Hawking's area law and the Kerr nature of black holes}, \httplink[Phys. Rev. Lett. 135, 111403]{https://doi.org/10.1103/kw5g-d732}.}
+\cvitem{2024}{\textbf{V. Prasad}, \emph{Tidal deformation of dynamical horizons in binary black hole mergers and its imprint on gravitational radiation}, \httplink[Phys. Rev. D 109, 044033]{https://doi.org/10.1103/PhysRevD.109.044033}. Single author.}
+\cvitem{2020}{\textbf{V. Prasad}, A. Gupta, S. Bose, B. Krishnan, E. Schnetter, \emph{News from horizons in binary black hole mergers}, \httplink[Phys. Rev. Lett. 125, 121101]{https://doi.org/10.1103/PhysRevLett.125.121101}.}
+
+\section{Grants, Awards and Service}
+
+\cvitem{2026 - 2029}{\textbf{co-Principal Investigator}, NSF award PHY-2608011, \emph{Testing General Relativity with Gravitational Wave Observations} (USD 360,000; PI: B. S. Sathyaprakash).}
+\cvitem{2026}{\textbf{Honourable Mention}, Gravity Research Foundation Awards for Essays on Gravitation.}
+\cvitem{2025 - 2026}{\textbf{Principal Investigator}, NSF ACCESS Explore Grant PHY250294, and further ACCESS allocations.}
+\cvitem{2018 - 2022}{\textbf{Shyama Prasad Mukherjee Fellowship}, CSIR, Govt. of India.}
+\cvitem{Service}{Co-lead, Testing General Relativity, Cosmic Explorer Science Traceability Matrix (2025-). Referee, \emph{Living Reviews in Relativity}. Member, LIGO-Virgo-KAGRA and SXS Collaborations.}
+\cvitem{Software}{\texttt{tdanalysis}, \texttt{nrhjsurrogate}, \texttt{qlmtools}, \texttt{waveformtools}, \texttt{spectral} -- open source, several on PyPI.}
+\cvitem{Teaching}{Co-mentoring five graduate students at Penn State. Lecturer, NP3M Summer School, Indiana University (2025); tutor at ICTS-TIFR summer schools (2023-24). Supervised an NSF REU project, a Master's project and a Bachelor's thesis.}
+\cvitem{Invited talks}{APS Global Physics Summit, Denver (2026); IIT Gandhinagar and IACS Kolkata (2026); APS DGRAV Seminar Series (2025); NAR-2024; IIT Bombay (2024).}
+
+\end{document}

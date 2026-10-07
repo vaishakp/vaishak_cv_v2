@@ -1,4 +1,4 @@
-name: Build & Publish CV PDF
+name: Build & Publish CV PDFs
 
 on:
   push:
@@ -16,15 +16,31 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended texlive-bibtex-extra
 
-      - name: Build main.tex -> cv.pdf
+      - name: Build all three CV versions
         run: |
           latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          latexmk -pdf -interaction=nonstopmode -halt-on-error cv-3page.tex
+          latexmk -pdf -interaction=nonstopmode -halt-on-error cv-1page.tex
           mv main.pdf cv.pdf
 
-      - name: Publish cv.pdf to release tag cv-latest
+      - name: Check page counts
+        run: |
+          sudo apt-get install -y poppler-utils
+          for f in cv.pdf cv-3page.pdf cv-1page.pdf; do
+            echo "$f: $(pdfinfo "$f" | awk '/^Pages:/ {print $2}') pages"
+          done
+          test "$(pdfinfo cv-1page.pdf | awk '/^Pages:/ {print $2}')" -eq 1 \
+            || { echo "::error::cv-1page.pdf is no longer one page"; exit 1; }
+          test "$(pdfinfo cv-3page.pdf | awk '/^Pages:/ {print $2}')" -le 3 \
+            || { echo "::error::cv-3page.pdf exceeds three pages"; exit 1; }
+
+      - name: Publish PDFs to release tag cv-latest
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
           tag_name: cv-latest
           name: "CV (latest)"
-          files: cv.pdf
+          files: |
+            cv.pdf
+            cv-3page.pdf
+            cv-1page.pdf

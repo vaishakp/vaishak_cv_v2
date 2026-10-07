@@ -14,5 +14,8 @@
 *.snm
 *.vrb
 
-# Build output (the GitHub Action publishes the PDF)
+# Build output (the GitHub Action publishes the PDFs to the cv-latest release)
 main.pdf
+cv-3page.pdf
+cv-1page.pdf
+cv.pdf
