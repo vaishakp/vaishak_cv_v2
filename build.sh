@@ -13,7 +13,7 @@ cd "$(dirname "$0")"
 
 status=0
 
-for doc in main cv-3page cv-1page; do
+for doc in Prasad_Vaishak_cv cv-3page cv-1page; do
     if latexmk -pdf -interaction=nonstopmode -halt-on-error "$doc.tex" > "/tmp/cvbuild-$doc.log" 2>&1; then
         pages=$(pdfinfo "$doc.pdf" | awk '/^Pages:/ {print $2}')
         printf '  ok    %-10s %s pages\n' "$doc" "$pages"

@@ -7,12 +7,12 @@ synced with Overleaf, so the layout below is designed to be edited from either s
 
 | File | Length | Use |
 |---|---|---|
-| `main.tex` | ~9 pp | The full record. Everything. |
+| `Prasad_Vaishak_cv.tex` | ~9 pp | The full record. Everything. |
 | `cv-3page.tex` | 3 pp | Job and grant applications that cap CV length. |
 | `cv-1page.tex` | 1 pp | Cover-letter attachments, speaker bios, hard one-page limits. |
 
 All three share `personal.tex` (name, address, phone, email, homepage), so contact
-details are edited once. `main.tex` is assembled from `sections/`; the two short
+details are edited once. `Prasad_Vaishak_cv.tex` is assembled from `sections/`; the two short
 versions are self-contained, because a shortened CV needs *selected and reworded*
 content rather than a subset of the full one. When something important is added to
 the long CV, decide whether it earns a place in the short ones.
@@ -39,11 +39,11 @@ that checks this one out, for instance.
 ## Layout
 
 ```
-main.tex              long version: preamble, \input list
+Prasad_Vaishak_cv.tex long version: preamble, \input list
 cv-3page.tex          3-page version, self-contained
 cv-1page.tex          1-page version, self-contained
 personal.tex          contact details, shared by all three
-sections/             one file per CV section, used by main.tex — edit these
+sections/             one file per CV section, used by Prasad_Vaishak_cv.tex — edit these
   positions.tex       positions held
   education.tex       Ph.D thesis and education
   publications.tex    in preparation + published/archived
@@ -60,8 +60,8 @@ moderncv*.sty
 pictures/
 ```
 
-`main.tex` must stay the Overleaf root document. To reorder the CV, move the
-`\input` lines in `main.tex`; to edit content, open only the relevant file in
+`Prasad_Vaishak_cv.tex` must stay the Overleaf root document. To reorder the CV, move the
+`\input` lines in `Prasad_Vaishak_cv.tex`; to edit content, open only the relevant file in
 `sections/`.
 
 ## Conventions
